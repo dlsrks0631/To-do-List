@@ -1,11 +1,9 @@
-// const -> constant 값이 바뀔 수 없음
-// let -> 업데이트 가능
-
-let a = 5;
-const b = 2;
-const myName = "nico";
-
-console.log(a + b);
-console.log(a * b);
-console.log(a / b);
-console.log("hello " + myName);
+const player = {
+  name: "nico",
+  sayHello: function (a) {
+    console.log("hello" + a);
+  },
+};
+console.log(player);
+console.log(player.name);
+player.sayHello("lyn");
