@@ -9,7 +9,3 @@ const calculator = {
     console.log(a ** b);
   },
 };
-
-calculator.add(1, 3);
-calculator.minus(1, 3);
-calculator.power(2, 3);
