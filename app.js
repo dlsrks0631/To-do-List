@@ -1,9 +1,7 @@
-const age = parseInt(prompt("How old are you ? "));
+const title = document.querySelector("#hello:first-child h1");
 
-if (isNaN(age)) {
-  console.log("Please write a number");
-} else if (age < 18) {
-  console.log("Thank you for writing your age.");
-} else {
-  console.log("You can ");
+function handleTitleClick() {
+  title.style.color = "blue";
 }
+
+title.addEventListener("click", handleTitleClick);
