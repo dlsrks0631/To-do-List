@@ -1,16 +1,24 @@
 const loginForm = document.querySelector("#login-form");
+const loginInput = document.querySelector("#login-form input");
+const loginButton = document.querySelector("#login-form button");
+const greeting = document.querySelector("#greeting");
 // == const loginForm = document.getElementById("login-form")
 // -> id 를 가져온다는 사실을 알기 때문에
-
 // loginForm에서 input과 button을 가져옴
-const loginInput = loginForm.querySelector("input");
-const loginButton = loginForm.querySelector("button");
 // == const loginInput = document.querySelector("#login-form input");
 // == const loginButton = document.querySelector("#login-form button");
 
-function onLoginBtnClick() {
-  console.log(loginInput.value);
-  console.log("click");
+// 일반적으로 string만 포함된 변수는 대문자로 표기
+const HIDDEN_CLASSNAME = "hidden";
+
+function onLoginSubmit(event) {
+  event.preventDefault();
+  // preventDefault => 어떤 이벤트의 기본 동작(ex))submit을 누르면 새로고침)이든지
+  // 발생되지 않도록 막는 것.
+  loginForm.classList.add("hidden"); // 클래스 추가
+  const username = loginInput.value;
+  greeting.innerText = "Hello " + username;
+  greeting.classList.remove("hideden"); // 클래스 삭제
 }
 
-loginButton.addEventListener("click", onLoginBtnClick);
+loginForm.addEventListener("submit", onLoginSubmit);
