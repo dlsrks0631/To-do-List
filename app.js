@@ -12,6 +12,11 @@ const greeting = document.querySelector("#greeting");
 const HIDDEN_CLASSNAME = "hidden";
 const USERNAME_KEY = "username";
 
+function paintGreetings(username) {
+  greeting.innerText = `Hello ${username}`;
+  greeting.classList.remove(HIDDEN_CLASSNAME);
+}
+
 function onLoginSubmit(event) {
   event.preventDefault();
   // preventDefault => 어떤 이벤트의 기본 동작(ex))submit을 누르면 새로고침)이든지
@@ -19,16 +24,16 @@ function onLoginSubmit(event) {
   loginForm.classList.add(HIDDEN_CLASSNAME); // 클래스 추가
   const username = loginInput.value;
   localStorage.setItem(USERNAME_KEY, username);
-  greeting.innerText = `Hello ${username}`; // === greeting.innerText = "Hello " + username;
-  greeting.classList.remove(HIDDEN_CLASSNAME); // 클래스 삭제
+  paintGreetings(username);
+  //   greeting.innerText = `Hello ${username}`; // === greeting.innerText = "Hello " + username;
+  //   greeting.classList.remove(HIDDEN_CLASSNAME); // 클래스 삭제
 }
-
-loginForm.addEventListener("submit", onLoginSubmit);
 
 const savedUsername = localStorage.getItem(USERNAME_KEY);
 
 if (savedUsername === null) {
-  // show the form
+  loginForm.classList.remove(HIDDEN_CLASSNAME);
+  loginForm.addEventListener("submit", onLoginSubmit);
 } else {
-  // show the greetings
+  paintGreetings(savedUsername);
 }
