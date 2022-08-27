@@ -10,15 +10,25 @@ const greeting = document.querySelector("#greeting");
 
 // 일반적으로 string만 포함된 변수는 대문자로 표기
 const HIDDEN_CLASSNAME = "hidden";
+const USERNAME_KEY = "username";
 
 function onLoginSubmit(event) {
   event.preventDefault();
   // preventDefault => 어떤 이벤트의 기본 동작(ex))submit을 누르면 새로고침)이든지
   // 발생되지 않도록 막는 것.
-  loginForm.classList.add("hidden"); // 클래스 추가
+  loginForm.classList.add(HIDDEN_CLASSNAME); // 클래스 추가
   const username = loginInput.value;
-  greeting.innerText = "Hello " + username;
-  greeting.classList.remove("hideden"); // 클래스 삭제
+  localStorage.setItem(USERNAME_KEY, username);
+  greeting.innerText = `Hello ${username}`; // === greeting.innerText = "Hello " + username;
+  greeting.classList.remove(HIDDEN_CLASSNAME); // 클래스 삭제
 }
 
 loginForm.addEventListener("submit", onLoginSubmit);
+
+const savedUsername = localStorage.getItem(USERNAME_KEY);
+
+if (savedUsername === null) {
+  // show the form
+} else {
+  // show the greetings
+}
